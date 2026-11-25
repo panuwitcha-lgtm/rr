@@ -1,0 +1,17 @@
+{
+  "name": "Health Chair",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "postCreateCommand": "cd webapp && npm ci && pip install --user platformio",
+  "forwardPorts": [5173],
+  "portsAttributes": {
+    "5173": { "label": "Health Chair web app", "onAutoForward": "openBrowser" }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["platformio.platformio-ide"]
+    }
+  }
+}

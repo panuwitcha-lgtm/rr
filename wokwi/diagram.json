@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "author": "Health Chair group",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-s3-devkitc-1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr1",
+      "top": -40,
+      "left": -420,
+      "attrs": {
+        "travelLength": "30",
+        "value": "50"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr1_lbl",
+      "top": -58,
+      "left": -410,
+      "attrs": {
+        "text": "FSR1 seat front-left (IO3)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr2",
+      "top": 60,
+      "left": -420,
+      "attrs": {
+        "travelLength": "30",
+        "value": "50"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr2_lbl",
+      "top": 42,
+      "left": -410,
+      "attrs": {
+        "text": "FSR2 seat front-right (IO9)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr3",
+      "top": 160,
+      "left": -420,
+      "attrs": {
+        "travelLength": "30",
+        "value": "50"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr3_lbl",
+      "top": 142,
+      "left": -410,
+      "attrs": {
+        "text": "FSR3 seat rear-left (IO4)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr4",
+      "top": 260,
+      "left": -420,
+      "attrs": {
+        "travelLength": "30",
+        "value": "50"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr4_lbl",
+      "top": 242,
+      "left": -410,
+      "attrs": {
+        "text": "FSR4 seat rear-right (IO5)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr5",
+      "top": -40,
+      "left": 260,
+      "attrs": {
+        "travelLength": "30",
+        "value": "40"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr5_lbl",
+      "top": -58,
+      "left": 270,
+      "attrs": {
+        "text": "FSR5 backrest lumbar (IO6)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "fsr6",
+      "top": 60,
+      "left": 260,
+      "attrs": {
+        "travelLength": "30",
+        "value": "40"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "fsr6_lbl",
+      "top": 42,
+      "left": 270,
+      "attrs": {
+        "text": "FSR6 backrest upper (IO7)"
+      }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "vbat",
+      "top": 260,
+      "left": 260,
+      "attrs": {
+        "travelLength": "30",
+        "value": "60"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "vbat_lbl",
+      "top": 242,
+      "left": 270,
+      "attrs": {
+        "text": "Battery /2 (IO10)  64 = 4.2V"
+      }
+    },
+    {
+      "type": "wokwi-mpu6050",
+      "id": "imu",
+      "top": -150,
+      "left": 40,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-text",
+      "id": "imu_lbl",
+      "top": -175,
+      "left": 10,
+      "attrs": {
+        "text": "MPU6050 on backrest (SDA IO38, SCL IO39)"
+      }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz",
+      "top": 380,
+      "left": -120,
+      "attrs": {
+        "volume": "0.2"
+      }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "bz_lbl",
+      "top": 450,
+      "left": -150,
+      "attrs": {
+        "text": "Buzzer 2300 Hz (IO40)"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_alert",
+      "top": 380,
+      "left": 250,
+      "attrs": {
+        "color": "red",
+        "label": "ALERT IO13"
+      }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_status",
+      "top": 380,
+      "left": 330,
+      "attrs": {
+        "color": "green",
+        "label": "SEND IO14"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 460,
+      "left": 220,
+      "rotate": 90,
+      "attrs": {
+        "value": "330"
+      }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 460,
+      "left": 300,
+      "rotate": 90,
+      "attrs": {
+        "value": "330"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "esp:TX",
+      "$serialMonitor:RX",
+      "",
+      []
+    ],
+    [
+      "esp:RX",
+      "$serialMonitor:TX",
+      "",
+      []
+    ],
+    [
+      "fsr1:SIG",
+      "esp:3",
+      "green",
+      []
+    ],
+    [
+      "fsr1:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr1:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "fsr2:SIG",
+      "esp:9",
+      "green",
+      []
+    ],
+    [
+      "fsr2:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr2:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "fsr3:SIG",
+      "esp:4",
+      "green",
+      []
+    ],
+    [
+      "fsr3:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr3:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "fsr4:SIG",
+      "esp:5",
+      "green",
+      []
+    ],
+    [
+      "fsr4:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr4:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "fsr5:SIG",
+      "esp:6",
+      "green",
+      []
+    ],
+    [
+      "fsr5:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr5:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "fsr6:SIG",
+      "esp:7",
+      "green",
+      []
+    ],
+    [
+      "fsr6:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "fsr6:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "vbat:SIG",
+      "esp:10",
+      "green",
+      []
+    ],
+    [
+      "vbat:VCC",
+      "esp:3V3.1",
+      "red",
+      []
+    ],
+    [
+      "vbat:GND",
+      "esp:GND.1",
+      "black",
+      []
+    ],
+    [
+      "imu:VCC",
+      "esp:3V3.2",
+      "red",
+      []
+    ],
+    [
+      "imu:GND",
+      "esp:GND.2",
+      "black",
+      []
+    ],
+    [
+      "imu:SDA",
+      "esp:38",
+      "blue",
+      []
+    ],
+    [
+      "imu:SCL",
+      "esp:39",
+      "orange",
+      []
+    ],
+    [
+      "bz:2",
+      "esp:40",
+      "purple",
+      []
+    ],
+    [
+      "bz:1",
+      "esp:GND.3",
+      "black",
+      []
+    ],
+    [
+      "led_alert:A",
+      "esp:13",
+      "red",
+      []
+    ],
+    [
+      "led_alert:C",
+      "r1:1",
+      "black",
+      []
+    ],
+    [
+      "r1:2",
+      "esp:GND.4",
+      "black",
+      []
+    ],
+    [
+      "led_status:A",
+      "esp:14",
+      "green",
+      []
+    ],
+    [
+      "led_status:C",
+      "r2:1",
+      "black",
+      []
+    ],
+    [
+      "r2:2",
+      "esp:GND.4",
+      "black",
+      []
+    ]
+  ],
+  "dependencies": {}
+}

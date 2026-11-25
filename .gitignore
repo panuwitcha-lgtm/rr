@@ -1,0 +1,17 @@
+# ความลับ ห้ามขึ้น GitHub
+firmware/include/secrets.h
+
+# PlatformIO
+firmware/.pio/
+firmware/.vscode/
+
+# เว็บแอป
+webapp/node_modules/
+webapp/dist/
+
+.DS_Store
+Thumbs.db
+
+# ตัวจำลอง Wokwi (PlatformIO)
+wokwi/.pio/
+wokwi/.vscode/

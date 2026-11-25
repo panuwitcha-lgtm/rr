@@ -1,0 +1,40 @@
+# build firmware ESP32-S3 ด้วย PlatformIO บน GitHub แล้วแนบไฟล์ .bin ให้ดาวน์โหลด
+name: Firmware (PlatformIO build)
+
+on:
+  push:
+    paths: ['firmware/**', '.github/workflows/firmware-build.yml']
+  pull_request:
+    paths: ['firmware/**']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        board: [1, 2]   # 1 = บอร์ด kk, 2 = บอร์ดของเอ็ม
+    defaults:
+      run:
+        working-directory: firmware
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.platformio
+          key: pio-${{ hashFiles('firmware/platformio.ini') }}
+      - run: pip install -U platformio
+      - name: เลือกบอร์ด
+        run: sed -i 's/^#define BOARD .*/#define BOARD ${{ matrix.board }}/' include/config.h
+      - run: pio run
+      - uses: actions/upload-artifact@v4
+        with:
+          name: health-chair-firmware-board${{ matrix.board }}
+          path: |
+            firmware/.pio/build/health-chair/firmware.bin
+            firmware/.pio/build/health-chair/bootloader.bin
+            firmware/.pio/build/health-chair/partitions.bin

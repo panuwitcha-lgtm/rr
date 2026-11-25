@@ -1,0 +1,4 @@
+# Wokwi Library List (ไลบรารีเดียวกับที่ใช้ใน Arduino IDE)
+PubSubClient
+ArduinoJson
+MPU6050_light

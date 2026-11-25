@@ -1,0 +1,5 @@
+# ให้ Wokwi for VS Code รันไฟล์ที่ PlatformIO build ไว้ (ต้องกด Build ก่อนทุกครั้งที่แก้โค้ด)
+[wokwi]
+version = 1
+firmware = '.pio/build/wokwi/firmware.bin'
+elf = '.pio/build/wokwi/firmware.elf'
